@@ -12,8 +12,7 @@ function App() {
     setFormState({ firstName: '', lastName: ''});
     evt.preventDefault();
   }
-  const handleOnChange = (event, name) => {
-    const { target: { value } } = event;
+  const handleOnChange = ({ target: { name, value }}) => {
     setFormState({ ...formState, [name]: value });
   }
   const { firstName, lastName } = formState;
@@ -21,12 +20,14 @@ function App() {
     <div className='App'>
       <h1>Sign Up Sheet</h1>
       <form onSubmit={handleSubmit}>
-        <input placeholder='First Name' value={firstName} onChange={(e) => handleOnChange(e, 'firstName')}/>
-        <input placeholder='Last Name' value={lastName} onChange={(e) => handleOnChange(e, 'lastName')}/>
+        <input placeholder='First Name' name='firstName' value={firstName} onChange={handleOnChange}/>
+        <input placeholder='Last Name' name='lastName' value={lastName} onChange={handleOnChange}/>
         <input type='submit'/>
-        <ul>
+        <div class="names">
+          <ul>
           {names.map((name, index) => <li key={index}>{name.firstName}, {name.lastName}</li>)}
-        </ul>
+          </ul>
+        </div>
       </form>
     </div>
   )
