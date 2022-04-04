@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.App input {
+.App input, span {
   margin-right: 10px;
 }
 
